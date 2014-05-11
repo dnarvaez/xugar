@@ -11,7 +11,9 @@ app.use('/logs', express.directory('logs'));
 var building = false;
 var buildNumber = 0;
 
-function prepareSystem() {
+function setup() {
+    fs.mkdirSync('logs');
+
     for (var i = 0; i < 6; i++) {
         if (!fs.existsSync('/dev/loop' + i)) {
             execSync('mknod /dev/loop'+ i + ' b 7 ' + i);
@@ -19,7 +21,7 @@ function prepareSystem() {
     }
 }
 
-prepareSystem();
+setup();
 
 app.post('/build/:model', function (request, response) {
     if (building) {
