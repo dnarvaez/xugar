@@ -31,7 +31,7 @@ function getBuildNumber(model) {
     var filename = 'latestbuild-xo' + model;
 
     if (fs.existsSync(filename)) {
-        return fs.readFileSync(filename, {encoding: 'utf8'}) + 1;
+        return int(fs.readFileSync(filename, {encoding: 'utf8'})) + 1;
     }
 
     return 1;
