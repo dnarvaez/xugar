@@ -27,7 +27,7 @@ function setup() {
     }
 }
 
-function getBuildNumber() {
+function getBuildNumber(model) {
     var filename = 'latestbuild-xo' + model;
 
     if (!fs.existsSync(filename)) {
@@ -46,7 +46,7 @@ app.post('/build/:model', function (request, response) {
     }
 
     var model = request.params.model;
-    var buildNumber = getBuildNumber();
+    var buildNumber = getBuildNumber(model);
 
     var logPath = 'logs/build' + buildNumber + '.log';
     var out = fs.openSync(logPath, 'a');
