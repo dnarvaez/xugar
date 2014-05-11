@@ -27,6 +27,16 @@ function setup() {
     }
 }
 
+function getBuildNumber() {
+    var filename = 'latestbuild-xo' + model;
+
+    if (!fs.existsSync(filename)) {
+        return fs.readFileSync(filename, {encoding: 'utf8'}) + 1;
+    }
+
+    return 1;
+}
+
 setup();
 
 app.post('/build/:model', function (request, response) {
@@ -36,11 +46,7 @@ app.post('/build/:model', function (request, response) {
     }
 
     var model = request.params.model;
-
-    var buildNumber = fs.readFileSync(
-        'latestbuild-xo' + model, {encoding: 'utf8'});
-
-    buildNumber++;
+    var buildNumber = getBuildNumber();
 
     var logPath = 'logs/build' + buildNumber + '.log';
     var out = fs.openSync(logPath, 'a');
