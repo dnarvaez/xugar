@@ -6,6 +6,7 @@ var execSync = require('exec-sync');
 var app = express();
 
 app.use('/logs', express.static('logs'));
+app.use('/logs', express.directory('logs'));
 
 var building = false;
 var buildNumber = 0;
