@@ -9,6 +9,9 @@ var app = express();
 app.use('/logs', express.static('logs'));
 app.use('/logs', express.directory('logs'));
 
+app.use('/images', express.static('images'));
+app.use('/images', express.directory('images'));
+
 var building = false;
 
 function setup() {
