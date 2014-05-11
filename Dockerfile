@@ -1,6 +1,6 @@
 FROM fedora
 
-RUN yum -y install git make gcc libtomcrypt-devel zlib-devel bitfrost-sugar \
+RUN yum -y install git make gcc libtomcrypt-devel zlib-devel \
     python-imgcreate file zip wget lzma genisoimage mtd-utils
 
 RUN git clone https://github.com/dnarvaez/olpc-os-builder.git
