@@ -42,7 +42,7 @@ app.post('/build/:model', function (request, response) {
 
     var process = child_process.spawn(
         'olpc-os-builder', ['xugar-1.0.0-' + model + '.ini'],
-        {stdio: ['inherit', out, err]});
+        {stdio: ['ignore', out, err]});
 
     process.on('close', function (code) {
         building = false;
