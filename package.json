@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "express": "3.5.1",
-    "exec-sync": "0.1.6"
+    "exec-sync": "0.1.6",
+    "ncp": "0.5.1"
   }
 }

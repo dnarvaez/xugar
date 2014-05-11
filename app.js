@@ -2,6 +2,7 @@ var child_process = require('child_process');
 var express = require('express');
 var fs = require('fs');
 var execSync = require('exec-sync');
+var ncp = require('ncp').ncp;
 
 var app = express();
 
@@ -9,11 +10,14 @@ app.use('/logs', express.static('logs'));
 app.use('/logs', express.directory('logs'));
 
 var building = false;
-var buildNumber = 0;
 
 function setup() {
     if (!fs.existsSync('logs')) {
         fs.mkdirSync('logs');
+    }
+
+    if (!fs.existsSync('images')) {
+        fs.mkdirSync('images');
     }
 
     for (var i = 0; i < 6; i++) {
@@ -31,21 +35,28 @@ app.post('/build/:model', function (request, response) {
         return;
     }
 
-    building = true;
-    buildNumber++;
+    var model = request.params.model;
 
-    var model = request.param('model');
+    var buildNumber = fs.readFileSync(
+        'latestbuild-xo' + model, {encoding: 'utf8'});
+
+    buildNumber++;
 
     var logPath = 'logs/build' + buildNumber + '.log';
     var out = fs.openSync(logPath, 'a');
     var err = fs.openSync(logPath, 'a');
+
+    building = true;
 
     var process = child_process.spawn(
         'olpc-os-builder', ['xugar-1.0.0-xo' + model + '.ini'],
         {stdio: ['ignore', out, err]});
 
     process.on('close', function (code) {
-        building = false;
+        var buildDir = 'images/' + buildNumber;
+        ncp('/var/tmp/olpc-os-builder/output/', buildDir, function (err) {
+            building = false;
+        });
     });
 
     response.send(200);
