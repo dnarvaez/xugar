@@ -51,7 +51,7 @@ app.post('/build/:model', function (request, response) {
     var model = request.params.model;
     var buildNumber = getBuildNumber(model);
 
-    var logPath = 'logs/build' + buildNumber + '.log';
+    var logPath = 'logs/build-xo' + model + "-" + buildNumber + '.log';
     var out = fs.openSync(logPath, 'a');
     var err = fs.openSync(logPath, 'a');
 
