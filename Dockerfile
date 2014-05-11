@@ -7,10 +7,10 @@ RUN yum -y install git make gcc libtomcrypt-devel zlib-devel \
 RUN git clone https://github.com/dnarvaez/olpc-os-builder.git
 RUN git clone https://github.com/dnarvaez/xugar.git
 
-WORKDIR olpc-os-builder
+WORKDIR /olpc-os-builder
 RUN git checkout v8.0
 
-WORKDIR xugar
+WORKDIR /xugar
 RUN npm install
 
 CMD npm app.js
