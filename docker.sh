@@ -1,7 +1,7 @@
 #!/bin/bash
 
-build_dir=$(pwd)/build
+output_dir=$(pwd)/output
 
 sudo docker run -i -t --privileged \
-    -v $build_dir:/xugar/build:rw \
+    -v $output_dir:/var/tmp/olpc-os-builder/output/:rw \
     dnarvaez/xugar /bin/bash
