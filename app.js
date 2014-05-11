@@ -12,7 +12,9 @@ var building = false;
 var buildNumber = 0;
 
 function setup() {
-    fs.mkdirSync('logs');
+    if (!fs.existsSync('logs')) {
+        fs.mkdirSync('logs');
+    }
 
     for (var i = 0; i < 6; i++) {
         if (!fs.existsSync('/dev/loop' + i)) {
