@@ -21,10 +21,6 @@ function setup() {
 
     if (!fs.existsSync('images')) {
         fs.mkdirSync('images');
-        fs.mkdirSync('images/xo1');
-        fs.mkdirSync('images/xo1.5');
-        fs.mkdirSync('images/xo1.75');
-        fs.mkdirSync('images/xo4');
     }
 
     for (var i = 0; i < 6; i++) {
@@ -66,8 +62,18 @@ app.post('/build/:model', function (request, response) {
         {stdio: ['ignore', out, err]});
 
     process.on('close', function (code) {
-        var buildDir = 'images/' + model + '/' + buildNumber;
+        var imagesDir = 'images/xo' + model;
+
+        if (!fs.existsSync(imagesDir)) {
+            fs.mkdirSync(imagesDir);
+        }
+
+        var buildDir = imagesDir + '/' + buildNumber;
         ncp('/var/tmp/olpc-os-builder/output/', buildDir, function (err) {
+            if (err) {
+                console.log("Error copying images: " + err);
+            }
+
             building = false;
         });
     });
