@@ -41,7 +41,7 @@ app.post('/build/:model', function (request, response) {
     var err = fs.openSync(logPath, 'a');
 
     var process = child_process.spawn(
-        'olpc-os-builder', ['xugar-1.0.0-' + model + '.ini'],
+        'olpc-os-builder', ['xugar-1.0.0-xo' + model + '.ini'],
         {stdio: ['ignore', out, err]});
 
     process.on('close', function (code) {
