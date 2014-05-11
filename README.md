@@ -11,9 +11,12 @@ If docker is available, first of all activate the container.
 
     ./run-docker.sh
 
-You can build without docker but you will have to install dependencies
-yourself and setup olpc-os-builder, see Dockerfile for the details.
-
 Then build the image with
 
     ./build-image.sh [xo model]
+
+You can build without docker but you will have to install dependencies
+yourself and setup olpc-os-builder, see Dockerfile for the details. When the
+system is ready you can just run
+
+    olpc-os-builder [ini file]
