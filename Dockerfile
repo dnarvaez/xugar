@@ -9,6 +9,7 @@ RUN git clone https://github.com/dnarvaez/xugar.git
 
 WORKDIR /olpc-os-builder
 RUN git checkout v8.0
+RUN make install
 
 WORKDIR /xugar
 RUN npm install
