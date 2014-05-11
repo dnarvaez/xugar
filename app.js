@@ -1,6 +1,7 @@
 var child_process = require('child_process');
 var express = require('express');
 var fs = require('fs');
+var execSync = require('exec-sync');
 
 var app = express();
 
@@ -8,6 +9,16 @@ app.use('/logs', express.static('logs'));
 
 var building = false;
 var buildNumber = 0;
+
+function prepareSystem() {
+    for (var i = 0; i < 6; i++) {
+        if (!fs.existsSync('/dev/loop' + i)) {
+            execSync('mknod /dev/loop'+ i + ' b 7 ' + i);
+        }
+    }
+}
+
+prepareSystem();
 
 app.post('/build/:model', function (request, response) {
     if (building) {
