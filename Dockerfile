@@ -8,7 +8,8 @@ RUN test -b /dev/loop4 || mknod /dev/loop4 b 7 4
 RUN test -b /dev/loop5 || mknod /dev/loop5 b 7 5
 
 RUN yum -y install git make gcc libtomcrypt-devel zlib-devel \
-    python-imgcreate file zip wget lzma genisoimage mtd-utils crcimg
+    python-imgcreate file zip wget lzma genisoimage mtd-utils crcimg \
+    nodejs
 
 RUN git clone https://github.com/dnarvaez/olpc-os-builder.git
 RUN git clone https://github.com/dnarvaez/xugar.git
