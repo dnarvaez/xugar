@@ -11,4 +11,12 @@ do
     test -b /dev/loop$i || mknod /dev/loop$i b 7 $i
 done
 
+cd /olpc-os-builder
+git pull
+
+make install
+
+cd /xugar
+git pull
+
 olpc-os-builder xugar-1.0.0-xo$1.ini
