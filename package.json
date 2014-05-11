@@ -1,0 +1,9 @@
+{
+  "name": "xugar",
+  "description": "Xugar builder",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.5.1"
+  }
+}
