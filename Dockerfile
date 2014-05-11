@@ -13,4 +13,4 @@ RUN git checkout v8.0
 WORKDIR /xugar
 RUN npm install
 
-CMD npm app.js
+CMD node app.js
